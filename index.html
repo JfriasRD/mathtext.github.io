@@ -6,216 +6,98 @@
 <title>Guía del Primer Parcial — MAT-014</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #f4f6f9; color: #1a1a2e; min-height: 100vh; }
 
-  body {
-    font-family: 'Segoe UI', Arial, sans-serif;
-    background: #f4f6f9;
-    color: #1a1a2e;
-    min-height: 100vh;
-  }
-
-  header {
-    background: #1a1a2e;
-    color: #fff;
-    padding: 28px 32px 22px;
-    border-bottom: 4px solid #e8c84a;
-  }
-  header h1 { font-size: 1.45rem; font-weight: 700; letter-spacing: -0.3px; }
+  header { background: #1a1a2e; color: #fff; padding: 28px 32px 22px; border-bottom: 4px solid #e8c84a; }
+  header h1 { font-size: 1.45rem; font-weight: 700; }
   header p  { font-size: 0.9rem; color: #aab0c0; margin-top: 5px; }
-
-  .badges {
-    display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px;
-  }
-  .badge {
-    background: rgba(255,255,255,0.1);
-    border: 1px solid rgba(255,255,255,0.2);
-    border-radius: 20px;
-    padding: 5px 14px;
-    font-size: 0.82rem;
-    color: #e8e8f0;
-    font-weight: 600;
-  }
+  .badges { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+  .badge { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; padding: 5px 14px; font-size: 0.82rem; color: #e8e8f0; font-weight: 600; }
   .badge.yellow { background: #e8c84a; color: #1a1a2e; border-color: #e8c84a; }
+  .badge.green  { background: #4caf50; color: #fff; border-color: #4caf50; }
 
-  .container {
-    max-width: 860px;
-    margin: 0 auto;
-    padding: 32px 20px 60px;
+  .container { max-width: 860px; margin: 0 auto; padding: 32px 20px 60px; }
+
+  /* VENTANAS BOX */
+  .windows-box {
+    background: #fff;
+    border-radius: 12px;
+    border: 0.5px solid #dde2ea;
+    overflow: hidden;
+    margin-bottom: 28px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
   }
+  .windows-header {
+    background: #1a1a2e;
+    padding: 14px 20px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 0.03em;
+  }
+  .windows-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+  .window-card {
+    padding: 20px 22px;
+    border-right: 0.5px solid #dde2ea;
+  }
+  .window-card:last-child { border-right: none; }
+  .window-label { font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #888; margin-bottom: 6px; }
+  .window-time { font-size: 1.5rem; font-weight: 800; color: #1a1a2e; line-height: 1.1; }
+  .window-sub  { font-size: 0.83rem; color: #666; margin-top: 5px; }
+  .window-note { font-size: 0.8rem; color: #e65100; margin-top: 8px; font-weight: 600; }
 
   .intro-box {
     background: #fff;
     border-radius: 10px;
     border-left: 5px solid #e8c84a;
     padding: 18px 22px;
-    margin-bottom: 32px;
+    margin-bottom: 28px;
     font-size: 0.93rem;
     line-height: 1.7;
     color: #333;
   }
-  .intro-box strong { color: #1a1a2e; }
 
-  /* Progress bar */
-  .progress-wrap {
-    background: #fff;
-    border-radius: 10px;
-    padding: 16px 20px;
-    margin-bottom: 30px;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
-  }
-  .progress-label {
-    display: flex; justify-content: space-between;
-    font-size: 0.82rem; color: #666; margin-bottom: 8px;
-  }
-  .progress-bar-bg {
-    height: 8px; background: #e8eaf0; border-radius: 8px; overflow: hidden;
-  }
-  .progress-bar-fill {
-    height: 100%; background: #1a1a2e; border-radius: 8px;
-    transition: width 0.4s ease;
-    width: 0%;
-  }
+  .progress-wrap { background: #fff; border-radius: 10px; padding: 16px 20px; margin-bottom: 28px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+  .progress-label { display: flex; justify-content: space-between; font-size: 0.82rem; color: #666; margin-bottom: 8px; }
+  .progress-bar-bg { height: 8px; background: #e8eaf0; border-radius: 8px; overflow: hidden; }
+  .progress-bar-fill { height: 100%; background: #1a1a2e; border-radius: 8px; transition: width 0.4s ease; width: 0%; }
 
-  /* Steps nav */
-  .steps-nav {
-    display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px;
-  }
-  .step-btn {
-    border: 1.5px solid #d0d4dd;
-    background: #fff;
-    border-radius: 8px;
-    padding: 7px 14px;
-    font-size: 0.82rem;
-    font-weight: 600;
-    cursor: pointer;
-    color: #555;
-    transition: all 0.2s;
-  }
+  .steps-nav { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
+  .step-btn { border: 1.5px solid #d0d4dd; background: #fff; border-radius: 8px; padding: 7px 14px; font-size: 0.82rem; font-weight: 600; cursor: pointer; color: #555; transition: all 0.2s; }
   .step-btn:hover  { border-color: #1a1a2e; color: #1a1a2e; }
   .step-btn.active { background: #1a1a2e; color: #fff; border-color: #1a1a2e; }
   .step-btn.done   { background: #eaf5ea; border-color: #4caf50; color: #2e7d32; }
 
-  /* Step card */
-  .step-card {
-    display: none;
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
-    overflow: hidden;
-    animation: fadeIn 0.25s ease;
-  }
+  .step-card { display: none; background: #fff; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.07); overflow: hidden; animation: fadeIn 0.25s ease; }
   .step-card.visible { display: block; }
+  @keyframes fadeIn { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:translateY(0); } }
 
-  @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
-
-  .card-header {
-    background: #1a1a2e;
-    padding: 20px 26px;
-    display: flex; align-items: center; gap: 16px;
-  }
-  .step-number {
-    width: 42px; height: 42px;
-    background: #e8c84a;
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.1rem; font-weight: 800; color: #1a1a2e;
-    flex-shrink: 0;
-  }
+  .card-header { background: #1a1a2e; padding: 20px 26px; display: flex; align-items: center; gap: 16px; }
+  .step-number { width: 42px; height: 42px; background: #e8c84a; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; font-weight: 800; color: #1a1a2e; flex-shrink: 0; }
   .card-header h2 { color: #fff; font-size: 1.05rem; font-weight: 700; }
   .card-header span { color: #aab0c0; font-size: 0.82rem; margin-top: 2px; display: block; }
-
   .card-body { padding: 24px 26px; }
 
   .action-list { list-style: none; margin: 0; padding: 0; }
-  .action-list li {
-    display: flex; align-items: flex-start; gap: 12px;
-    padding: 11px 0;
-    border-bottom: 1px solid #f0f2f5;
-    font-size: 0.93rem;
-    line-height: 1.6;
-    color: #333;
-  }
+  .action-list li { display: flex; align-items: flex-start; gap: 12px; padding: 11px 0; border-bottom: 1px solid #f0f2f5; font-size: 0.93rem; line-height: 1.6; color: #333; }
   .action-list li:last-child { border-bottom: none; }
-  .action-list li .icon {
-    width: 24px; height: 24px; flex-shrink: 0;
-    background: #f0f2f5; border-radius: 6px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 0.8rem; font-weight: 700; color: #555; margin-top: 1px;
-  }
+  .action-list li .icon { width: 24px; height: 24px; flex-shrink: 0; background: #f0f2f5; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 700; color: #555; margin-top: 1px; }
 
-  .warning-box {
-    background: #fff8e1;
-    border: 1.5px solid #f9a825;
-    border-radius: 8px;
-    padding: 13px 16px;
-    margin-top: 16px;
-    font-size: 0.88rem;
-    line-height: 1.65;
-    color: #5d4037;
-  }
-  .warning-box strong { color: #e65100; }
-
-  .danger-box {
-    background: #ffebee;
-    border: 1.5px solid #ef9a9a;
-    border-radius: 8px;
-    padding: 13px 16px;
-    margin-top: 16px;
-    font-size: 0.88rem;
-    line-height: 1.65;
-    color: #b71c1c;
-  }
+  .warning-box { background: #fff8e1; border: 1.5px solid #f9a825; border-radius: 8px; padding: 13px 16px; margin-top: 16px; font-size: 0.88rem; line-height: 1.65; color: #5d4037; }
+  .danger-box  { background: #ffebee; border: 1.5px solid #ef9a9a; border-radius: 8px; padding: 13px 16px; margin-top: 16px; font-size: 0.88rem; line-height: 1.65; color: #b71c1c; }
   .danger-box strong { display: block; font-size: 0.9rem; margin-bottom: 4px; }
-
-  .info-box {
-    background: #e8f5e9;
-    border: 1.5px solid #a5d6a7;
-    border-radius: 8px;
-    padding: 13px 16px;
-    margin-top: 16px;
-    font-size: 0.88rem;
-    line-height: 1.65;
-    color: #1b5e20;
-  }
+  .info-box    { background: #e8f5e9; border: 1.5px solid #a5d6a7; border-radius: 8px; padding: 13px 16px; margin-top: 16px; font-size: 0.88rem; line-height: 1.65; color: #1b5e20; }
   .info-box strong { display: block; margin-bottom: 4px; }
 
-  .filename-box {
-    background: #f0f2f5;
-    border-radius: 8px;
-    padding: 12px 16px;
-    margin-top: 14px;
-    font-family: monospace;
-    font-size: 0.95rem;
-    color: #1a1a2e;
-    font-weight: 700;
-    text-align: center;
-    letter-spacing: 0.3px;
-  }
-  .filename-example {
-    text-align: center;
-    font-size: 0.8rem;
-    color: #888;
-    margin-top: 6px;
-    font-style: italic;
-  }
+  .filename-box { background: #f0f2f5; border-radius: 8px; padding: 12px 16px; margin-top: 14px; font-family: monospace; font-size: 0.95rem; color: #1a1a2e; font-weight: 700; text-align: center; }
+  .filename-example { text-align: center; font-size: 0.8rem; color: #888; margin-top: 6px; font-style: italic; }
 
-  /* Nav buttons */
-  .card-footer {
-    padding: 16px 26px;
-    border-top: 1px solid #f0f2f5;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .nav-btn {
-    padding: 10px 22px;
-    border-radius: 8px;
-    font-size: 0.9rem;
-    font-weight: 700;
-    cursor: pointer;
-    border: 2px solid #1a1a2e;
-    transition: all 0.18s;
-  }
+  .card-footer { padding: 16px 26px; border-top: 1px solid #f0f2f5; display: flex; justify-content: space-between; align-items: center; }
+  .nav-btn { padding: 10px 22px; border-radius: 8px; font-size: 0.9rem; font-weight: 700; cursor: pointer; border: 2px solid #1a1a2e; transition: all 0.18s; }
   .nav-btn.prev { background: #fff; color: #1a1a2e; }
   .nav-btn.prev:hover { background: #f0f2f5; }
   .nav-btn.next { background: #1a1a2e; color: #fff; }
@@ -223,34 +105,19 @@
   .nav-btn:disabled { opacity: 0.3; cursor: not-allowed; }
   .step-counter { font-size: 0.82rem; color: #888; }
 
-  /* Final screen */
-  .final-card {
-    display: none;
-    background: #1a1a2e;
-    border-radius: 12px;
-    padding: 36px 30px;
-    text-align: center;
-    color: #fff;
-    animation: fadeIn 0.3s ease;
-  }
+  .final-card { display: none; background: #1a1a2e; border-radius: 12px; padding: 36px 30px; text-align: center; color: #fff; animation: fadeIn 0.3s ease; }
   .final-card.visible { display: block; }
   .final-card h2 { font-size: 1.4rem; margin-bottom: 10px; }
   .final-card p  { color: #aab0c0; font-size: 0.93rem; line-height: 1.7; margin-bottom: 20px; }
-  .restart-btn {
-    background: #e8c84a; color: #1a1a2e;
-    border: none; border-radius: 8px;
-    padding: 11px 28px; font-size: 0.92rem; font-weight: 700;
-    cursor: pointer;
-  }
+  .restart-btn { background: #e8c84a; color: #1a1a2e; border: none; border-radius: 8px; padding: 11px 28px; font-size: 0.92rem; font-weight: 700; cursor: pointer; }
 
   @media (max-width: 560px) {
     header { padding: 20px 18px 16px; }
-    header h1 { font-size: 1.1rem; }
     .container { padding: 20px 12px 40px; }
-    .card-header { padding: 16px 18px; }
-    .card-body   { padding: 18px 18px; }
-    .card-footer { padding: 14px 18px; }
-    .step-btn    { padding: 6px 10px; font-size: 0.78rem; }
+    .windows-grid { grid-template-columns: 1fr; }
+    .window-card { border-right: none; border-bottom: 0.5px solid #dde2ea; }
+    .card-header, .card-body, .card-footer { padding-left: 18px; padding-right: 18px; }
+    .step-btn { padding: 6px 10px; font-size: 0.78rem; }
   }
 </style>
 </head>
@@ -258,19 +125,38 @@
 
 <header>
   <h1>¿Cómo realizar el Primer Parcial? — MAT-014</h1>
-  <p>Guía paso a paso para el día del examen · Sección W62 · Prof. Joel Frías</p>
+  <p>Guía paso a paso · Sección W62 · Prof. Joel Frías · Lunes 6 de abril</p>
   <div class="badges">
     <span class="badge yellow">10 puntos</span>
     <span class="badge">90 minutos</span>
     <span class="badge">Entregar en PDF</span>
-    <span class="badge">8 pasos</span>
+    <span class="badge green">2 horarios disponibles</span>
   </div>
 </header>
 
 <div class="container">
 
+  <!-- VENTANAS HORARIAS -->
+  <div class="windows-box">
+    <div class="windows-header">📅 Lunes 6 de abril — Elige tu horario (confirma con anticipación)</div>
+    <div class="windows-grid">
+      <div class="window-card">
+        <div class="window-label">Grupo A — Matutina</div>
+        <div class="window-time">7:00 am – 9:00 am</div>
+        <div class="window-sub">Videoconferencia activa durante todo el examen.</div>
+        <div class="window-note">La tarea cierra automáticamente a las 8:30 am.</div>
+      </div>
+      <div class="window-card">
+        <div class="window-label">Grupo B — Nocturna</div>
+        <div class="window-time">8:00 pm – 10:00 pm</div>
+        <div class="window-sub">Videoconferencia activa durante todo el examen.</div>
+        <div class="window-note">La tarea cierra automáticamente a las 9:30 pm.</div>
+      </div>
+    </div>
+  </div>
+
   <div class="intro-box">
-    <strong>Lee esta guía completa antes del día del examen.</strong> Sigue cada paso en orden el día del parcial para evitar errores. Si tienes dudas técnicas, contáctame <strong>antes</strong> del examen, no durante.
+    <strong>Lee esta guía completa antes del día del examen.</strong> Confirma tu horario con el profesor antes del lunes. Si tienes dudas técnicas, repórtalas <strong>antes</strong> del examen, no durante.
   </div>
 
   <!-- Progress -->
@@ -284,65 +170,56 @@
     </div>
   </div>
 
-  <!-- Step nav buttons -->
   <div class="steps-nav" id="steps-nav">
-    <button class="step-btn active" onclick="goTo(0)">1. Classroom</button>
-    <button class="step-btn"        onclick="goTo(1)">2. Tarea</button>
-    <button class="step-btn"        onclick="goTo(2)">3. PDF</button>
-    <button class="step-btn"        onclick="goTo(3)">4. Hojas</button>
-    <button class="step-btn"        onclick="goTo(4)">5. Escanear</button>
-    <button class="step-btn"        onclick="goTo(5)">6. Nombre</button>
+    <button class="step-btn active" onclick="goTo(0)">1. Horario</button>
+    <button class="step-btn"        onclick="goTo(1)">2. Classroom</button>
+    <button class="step-btn"        onclick="goTo(2)">3. Tarea</button>
+    <button class="step-btn"        onclick="goTo(3)">4. PDF</button>
+    <button class="step-btn"        onclick="goTo(4)">5. Hojas</button>
+    <button class="step-btn"        onclick="goTo(5)">6. Escanear</button>
     <button class="step-btn"        onclick="goTo(6)">7. Entregar</button>
     <button class="step-btn"        onclick="goTo(7)">8. Confirmar</button>
   </div>
 
-  <!-- ── STEP 1 ─────────────────────────────────────────────────────── -->
+  <!-- STEP 1 -->
   <div class="step-card visible" id="step-0">
     <div class="card-header">
       <div class="step-number">1</div>
-      <div>
-        <h2>Entrar a Google Classroom</h2>
-        <span>Antes de que inicie el examen</span>
-      </div>
+      <div><h2>Confirma tu horario</h2><span>Antes del domingo 5 de abril</span></div>
     </div>
     <div class="card-body">
       <ul class="action-list">
-        <li><div class="icon">①</div><div>Abre <strong>Google Chrome</strong> y ve a <strong>classroom.google.com</strong>.</div></li>
-        <li><div class="icon">②</div><div>Inicia sesión con tu <strong>correo institucional</strong> de la universidad.</div></li>
-        <li><div class="icon">③</div><div>Busca la materia <strong>MAT-014 — Sección W62</strong> y haz clic para entrar.</div></li>
-        <li><div class="icon">④</div><div>Asegúrate de estar inscrito en el aula <strong>antes del día del examen</strong>. Si no aparece la materia, comunícaselo al profesor con anticipación.</div></li>
+        <li><div class="icon">①</div><div>El examen se realiza el <strong>lunes 6 de abril</strong> en dos horarios. Debes elegir uno.</div></li>
+        <li><div class="icon">②</div><div><strong>Ventana A (matutina):</strong> 7:00 am – 9:00 am. Videoconferencia activa en ese horario.</div></li>
+        <li><div class="icon">③</div><div><strong>Ventana B (vespertina):</strong> 6:00 pm – 7:30 pm. Videoconferencia activa en ese horario.</div></li>
+        <li><div class="icon">④</div><div>Comunica tu elección al profesor <strong>antes del domingo 5 de abril</strong>. No se aceptan cambios de horario el día del examen.</div></li>
       </ul>
-      <div class="warning-box">
-        <strong>Importante:</strong> Problemas de acceso deben reportarse con anticipación, no el mismo día del parcial. El tiempo del examen corre desde que se publica la tarea.
+      <div class="danger-box">
+        <strong>⚠ El sistema cierra automáticamente en ambas ventanas</strong>
+        Si no entregas antes del cierre de tu ventana, no podrás subir el archivo después bajo ninguna circunstancia.
       </div>
     </div>
     <div class="card-footer">
-      <button class="nav-btn prev" onclick="prev()" disabled>← Anterior</button>
-      <span class="step-counter" id="counter-0">1 / 8</span>
+      <button class="nav-btn prev" disabled>← Anterior</button>
+      <span class="step-counter">1 / 8</span>
       <button class="nav-btn next" onclick="next()">Siguiente →</button>
     </div>
   </div>
 
-  <!-- ── STEP 2 ─────────────────────────────────────────────────────── -->
+  <!-- STEP 2 -->
   <div class="step-card" id="step-1">
     <div class="card-header">
       <div class="step-number">2</div>
-      <div>
-        <h2>Abrir la tarea del examen</h2>
-        <span>Al inicio del examen</span>
-      </div>
+      <div><h2>Entrar a Google Classroom</h2><span>Al inicio de tu ventana de examen</span></div>
     </div>
     <div class="card-body">
       <ul class="action-list">
-        <li><div class="icon">①</div><div>Ve a <strong>Trabajo de clase</strong> o al muro del aula.</div></li>
-        <li><div class="icon">②</div><div>Busca y abre la tarea titulada <strong>"Primer Parcial — MAT-014"</strong>.</div></li>
-        <li><div class="icon">③</div><div>Lee completamente la <strong>descripción de la tarea</strong> antes de hacer cualquier otra cosa.</div></li>
-        <li><div class="icon">④</div><div>Toma nota de la <strong>fecha y hora de cierre</strong>. El sistema cierra automáticamente.</div></li>
+        <li><div class="icon">①</div><div>Abre <strong>Google Chrome</strong> y ve a <strong>classroom.google.com</strong>.</div></li>
+        <li><div class="icon">②</div><div>Inicia sesión con tu <strong>correo institucional</strong>.</div></li>
+        <li><div class="icon">③</div><div>Busca la materia <strong>MAT-014 — Sección W62</strong> y haz clic para entrar.</div></li>
+        <li><div class="icon">④</div><div>Conéctate también a la <strong>videoconferencia</strong> del horario que elegiste. Debes permanecer conectado durante todo el examen.</div></li>
       </ul>
-      <div class="danger-box">
-        <strong>⚠ El sistema se cierra automáticamente</strong>
-        Al vencer el tiempo de 90 minutos, la tarea se cierra y no podrás subir tu archivo aunque lo tengas listo. Administra bien tu tiempo.
-      </div>
+      <div class="warning-box">Problemas de acceso deben reportarse con anticipación, no el mismo día del examen.</div>
     </div>
     <div class="card-footer">
       <button class="nav-btn prev" onclick="prev()">← Anterior</button>
@@ -351,25 +228,22 @@
     </div>
   </div>
 
-  <!-- ── STEP 3 ─────────────────────────────────────────────────────── -->
+  <!-- STEP 3 -->
   <div class="step-card" id="step-2">
     <div class="card-header">
       <div class="step-number">3</div>
-      <div>
-        <h2>Abrir y leer el PDF del examen</h2>
-        <span>Primeros minutos del examen</span>
-      </div>
+      <div><h2>Abrir la tarea del examen</h2><span>Al inicio del examen</span></div>
     </div>
     <div class="card-body">
       <ul class="action-list">
-        <li><div class="icon">①</div><div>Dentro de la tarea encontrarás el <strong>archivo PDF adjunto</strong>. Haz clic para abrirlo.</div></li>
-        <li><div class="icon">②</div><div>Lee el examen <strong>completo de inicio a fin</strong> antes de empezar a escribir.</div></li>
-        <li><div class="icon">③</div><div>El examen tiene <strong>5 partes</strong>, cada una vale 2 puntos (total: 10 puntos).</div></li>
-        <li><div class="icon">④</div><div>Empieza por las partes que te resulten más sencillas para aprovechar mejor el tiempo.</div></li>
+        <li><div class="icon">①</div><div>Ve a <strong>Trabajo de clase</strong> o al muro del aula.</div></li>
+        <li><div class="icon">②</div><div>Busca y abre la tarea <strong>"Primer Parcial — MAT-014"</strong> correspondiente a tu ventana.</div></li>
+        <li><div class="icon">③</div><div>Lee la descripción completa antes de hacer cualquier otra cosa.</div></li>
+        <li><div class="icon">④</div><div>Toma nota de la <strong>hora de cierre</strong> de tu ventana.</div></li>
       </ul>
-      <div class="info-box">
-        <strong>Distribución de puntos:</strong>
-        Parte I: 2 pts · Parte II: 2 pts · Parte III: 2 pts · Parte IV: 2 pts · Parte V: 2 pts
+      <div class="danger-box">
+        <strong>⚠ No abras la tarea de la otra ventana</strong>
+        Cada ventana tiene su propia tarea. Asegúrate de abrir la que corresponde a tu horario confirmado.
       </div>
     </div>
     <div class="card-footer">
@@ -379,28 +253,21 @@
     </div>
   </div>
 
-  <!-- ── STEP 4 ─────────────────────────────────────────────────────── -->
+  <!-- STEP 4 -->
   <div class="step-card" id="step-3">
     <div class="card-header">
       <div class="step-number">4</div>
-      <div>
-        <h2>Resolver en hojas en blanco</h2>
-        <span>Durante el examen</span>
-      </div>
+      <div><h2>Abrir y leer el PDF del examen</h2><span>Primeros minutos</span></div>
     </div>
     <div class="card-body">
       <ul class="action-list">
-        <li><div class="icon">①</div><div>Resuelve todos los ejercicios en <strong>hojas en blanco</strong>. No escribas en el PDF ni en la computadora.</div></li>
-        <li><div class="icon">②</div><div>En el encabezado de <strong>cada hoja que uses</strong>, escribe a mano tu <strong>nombre completo y número de matrícula</strong>.</div></li>
-        <li><div class="icon">③</div><div>Indica en cada respuesta el <strong>número de parte y el inciso</strong>. Ejemplo: <em>Parte III, inciso b</em>.</div></li>
-        <li><div class="icon">④</div><div>Muestra el <strong>desarrollo completo paso a paso</strong> en todos los ejercicios.</div></li>
+        <li><div class="icon">①</div><div>Dentro de la tarea encontrarás el <strong>archivo PDF</strong>. Haz clic para abrirlo.</div></li>
+        <li><div class="icon">②</div><div>Lee el examen <strong>completo</strong> antes de empezar a escribir.</div></li>
+        <li><div class="icon">③</div><div>El examen tiene <strong>5 partes</strong>, cada una vale 2 puntos (total: 10 puntos).</div></li>
+        <li><div class="icon">④</div><div>Comienza por las partes que te resulten más fáciles.</div></li>
       </ul>
-      <div class="danger-box">
-        <strong>⚠ Respuesta sin procedimiento = CERO (0)</strong>
-        Si escribes solo la respuesta final sin mostrar el desarrollo, esa respuesta tendrá calificación de CERO, aunque sea correcta. Esto aplica sin excepción.
-      </div>
-      <div class="warning-box" style="margin-top:12px;">
-        <strong>Páginas sin identificación no serán evaluadas.</strong> Escribe tu nombre y matrícula en CADA hoja, no solo en la primera.
+      <div class="info-box">
+        <strong>Distribución:</strong> Parte I: 2 pts · Parte II: 2 pts · Parte III: 2 pts · Parte IV: 2 pts · Parte V: 2 pts
       </div>
     </div>
     <div class="card-footer">
@@ -410,25 +277,22 @@
     </div>
   </div>
 
-  <!-- ── STEP 5 ─────────────────────────────────────────────────────── -->
+  <!-- STEP 5 -->
   <div class="step-card" id="step-4">
     <div class="card-header">
       <div class="step-number">5</div>
-      <div>
-        <h2>Escanear o fotografiar las hojas</h2>
-        <span>Últimos 10 minutos del examen</span>
-      </div>
+      <div><h2>Resolver en hojas en blanco</h2><span>Durante el examen</span></div>
     </div>
     <div class="card-body">
       <ul class="action-list">
-        <li><div class="icon">①</div><div><strong>Reserva los últimos 10 minutos</strong> del examen exclusivamente para este proceso. No lo dejes para el último momento.</div></li>
-        <li><div class="icon">②</div><div>Fotografía o escanea todas las hojas. Las fotos deben estar <strong>bien iluminadas, derechas y legibles</strong>.</div></li>
-        <li><div class="icon">③</div><div>Usa una app de escaneo como <strong>CamScanner</strong> o <strong>Adobe Scan</strong> (gratuitas) para mejorar la calidad y unir las páginas.</div></li>
-        <li><div class="icon">④</div><div>Asegúrate de que las hojas queden en <strong>orden</strong>: Parte I, Parte II, III, IV y V.</div></li>
-        <li><div class="icon">⑤</div><div>El resultado debe ser <strong>un único archivo PDF</strong> con todas las páginas incluidas.</div></li>
+        <li><div class="icon">①</div><div>Resuelve en <strong>hojas en blanco</strong>. No escribas en el PDF.</div></li>
+        <li><div class="icon">②</div><div>En el encabezado de <strong>cada hoja</strong> escribe a mano tu <strong>nombre completo y matrícula</strong>. Páginas sin identificación no serán evaluadas.</div></li>
+        <li><div class="icon">③</div><div>Indica la <strong>parte y el inciso</strong> de cada respuesta. Ejemplo: <em>Parte III, inciso b</em>.</div></li>
+        <li><div class="icon">④</div><div>Muestra el <strong>desarrollo completo</strong> en todos los ejercicios.</div></li>
       </ul>
-      <div class="info-box">
-        <strong>Recomendación:</strong> Practica escanear con tu teléfono antes del día del examen para no perder tiempo valioso.
+      <div class="danger-box">
+        <strong>⚠ Respuesta sin procedimiento = CERO (0)</strong>
+        Aplica sin excepción aunque la respuesta final sea correcta.
       </div>
     </div>
     <div class="card-footer">
@@ -438,29 +302,21 @@
     </div>
   </div>
 
-  <!-- ── STEP 6 ─────────────────────────────────────────────────────── -->
+  <!-- STEP 6 -->
   <div class="step-card" id="step-5">
     <div class="card-header">
       <div class="step-number">6</div>
-      <div>
-        <h2>Nombrar el archivo correctamente</h2>
-        <span>Antes de subir</span>
-      </div>
+      <div><h2>Escanear o fotografiar las hojas</h2><span>Últimos 10 minutos</span></div>
     </div>
     <div class="card-body">
       <ul class="action-list">
-        <li><div class="icon">①</div><div>El archivo PDF debe tener exactamente el siguiente nombre:</div></li>
+        <li><div class="icon">①</div><div><strong>Reserva los últimos 10 minutos</strong> exclusivamente para este proceso.</div></li>
+        <li><div class="icon">②</div><div>Fotos bien iluminadas, derechas y legibles. Texto claro en todas las páginas.</div></li>
+        <li><div class="icon">③</div><div>Usa <strong>CamScanner</strong> o <strong>Adobe Scan</strong> (gratis) para unir todo en un PDF.</div></li>
+        <li><div class="icon">④</div><div>Hojas en <strong>orden</strong>: Parte I, II, III, IV y V.</div></li>
+        <li><div class="icon">⑤</div><div>Resultado: <strong>un único archivo PDF</strong>.</div></li>
       </ul>
-      <div class="filename-box">Primer Parcial - Nombre del Estudiante - Matrícula</div>
-      <div class="filename-example">Ejemplo: Primer Parcial - Juan Pérez - 20230154</div>
-      <ul class="action-list" style="margin-top:14px;">
-        <li><div class="icon">②</div><div>Usa tu <strong>nombre completo</strong> tal como aparece en los registros de la universidad.</div></li>
-        <li><div class="icon">③</div><div>No uses nombres genéricos como "examen", "foto" o "documento".</div></li>
-      </ul>
-      <div class="danger-box">
-        <strong>⚠ Archivos con nombre incorrecto pueden no ser procesados.</strong>
-        El nombre del archivo es parte de las instrucciones. Síguela exactamente.
-      </div>
+      <div class="info-box"><strong>Consejo:</strong> Practica escanear antes del 6 de abril para no perder tiempo valioso.</div>
     </div>
     <div class="card-footer">
       <button class="nav-btn prev" onclick="prev()">← Anterior</button>
@@ -469,25 +325,25 @@
     </div>
   </div>
 
-  <!-- ── STEP 7 ─────────────────────────────────────────────────────── -->
+  <!-- STEP 7 -->
   <div class="step-card" id="step-6">
     <div class="card-header">
       <div class="step-number">7</div>
-      <div>
-        <h2>Subir el archivo en Google Classroom</h2>
-        <span>Antes de que cierre la tarea</span>
-      </div>
+      <div><h2>Nombrar y subir el archivo</h2><span>Antes de que cierre tu ventana</span></div>
     </div>
     <div class="card-body">
       <ul class="action-list">
-        <li><div class="icon">①</div><div>Regresa a la tarea en Google Classroom y haz clic en <strong>"Agregar"</strong> o <strong>"Adjuntar"</strong>.</div></li>
-        <li><div class="icon">②</div><div>Selecciona tu archivo PDF desde el teléfono o la computadora y espera a que <strong>cargue completamente</strong>.</div></li>
-        <li><div class="icon">③</div><div>No cierres la página hasta ver que el archivo quedó adjunto en la tarea.</div></li>
-        <li><div class="icon">④</div><div>Haz clic en el botón <strong>"Entregar"</strong> y espera la pantalla de confirmación.</div></li>
-        <li><div class="icon">⑤</div><div>Solo se acepta <strong>un archivo</strong>. Si necesitas volver a entregar, hazlo antes de que cierre la tarea.</div></li>
+        <li><div class="icon">①</div><div>Nombra el archivo exactamente así:</div></li>
       </ul>
-      <div class="warning-box">
-        <strong>No se aceptan:</strong> imágenes sueltas (JPG, PNG), archivos Word (.docx), ni ningún otro formato que no sea <strong>PDF</strong>.
+      <div class="filename-box">Primer Parcial - Nombre del Estudiante - Matrícula</div>
+      <div class="filename-example">Ejemplo: Primer Parcial - Juan Pérez - 20230154</div>
+      <ul class="action-list" style="margin-top:14px;">
+        <li><div class="icon">②</div><div>Regresa a la tarea en Classroom → clic en <strong>"Agregar"</strong> → selecciona tu PDF.</div></li>
+        <li><div class="icon">③</div><div>Espera a que cargue completamente → clic en <strong>"Entregar"</strong>.</div></li>
+        <li><div class="icon">④</div><div>Solo se acepta <strong>PDF</strong>. No se aceptan imágenes sueltas ni archivos Word.</div></li>
+      </ul>
+      <div class="danger-box">
+        <strong>⚠ No cierres la página hasta ver la confirmación de entrega.</strong>
       </div>
     </div>
     <div class="card-footer">
@@ -497,29 +353,26 @@
     </div>
   </div>
 
-  <!-- ── STEP 8 ─────────────────────────────────────────────────────── -->
+  <!-- STEP 8 -->
   <div class="step-card" id="step-7">
     <div class="card-header">
       <div class="step-number">8</div>
-      <div>
-        <h2>Avisar al profesor y esperar confirmación</h2>
-        <span>Último paso — obligatorio</span>
-      </div>
+      <div><h2>Avisar al profesor y esperar confirmación</h2><span>Último paso — obligatorio</span></div>
     </div>
     <div class="card-body">
       <ul class="action-list">
-        <li><div class="icon">①</div><div>Debes permanecer <strong>conectado en la videoconferencia durante todo el examen</strong>, desde el inicio hasta la confirmación del profesor.</div></li>
-        <li><div class="icon">②</div><div>Una vez que hayas entregado en Classroom, <strong>avísale al profesor en la videollamada</strong>: levanta la mano o escribe en el chat: <em>"Profe, ya entregué mi examen"</em>.</div></li>
-        <li><div class="icon">③</div><div>El profesor confirmará en la videollamada que recibió tu archivo correctamente.</div></li>
+        <li><div class="icon">①</div><div>Permanece <strong>conectado en la videoconferencia</strong> durante todo el examen.</div></li>
+        <li><div class="icon">②</div><div>Una vez entregado, avísale al profesor en la videollamada: <em>"Profe, ya entregué mi examen"</em>.</div></li>
+        <li><div class="icon">③</div><div>El profesor confirmará la recepción de tu archivo.</div></li>
         <li><div class="icon">④</div><div><strong>Solo puedes retirarte después de esa confirmación.</strong></div></li>
       </ul>
       <div class="danger-box">
         <strong>⚠ No te retires sin confirmación del profesor</strong>
-        Retirarse de la videoconferencia sin autorización puede ser considerado como abandono del examen.
+        Retirarse sin autorización puede ser considerado abandono del examen.
       </div>
       <div class="info-box" style="margin-top:12px;">
-        <strong>¡Listo! Esos son los 8 pasos.</strong>
-        Si seguiste todo en orden, tu examen fue entregado correctamente. ¡Mucho éxito!
+        <strong>¡Listo! Seguiste los 8 pasos correctamente.</strong>
+        Mucho éxito el lunes 6 de abril.
       </div>
     </div>
     <div class="card-footer">
@@ -529,12 +382,14 @@
     </div>
   </div>
 
-  <!-- ── FINAL ──────────────────────────────────────────────────────── -->
+  <!-- FINAL -->
   <div class="final-card" id="final">
-    <div style="font-size:2.4rem; margin-bottom:14px;">✓</div>
+    <div style="font-size:2.4rem;margin-bottom:14px;">✓</div>
     <h2>¡Revisaste los 8 pasos!</h2>
-    <p>Estás listo para el Primer Parcial de MAT-014.<br>Recuerda: <strong style="color:#e8c84a;">10 puntos · 90 minutos · PDF · nombre en cada hoja.</strong></p>
-    <p style="font-size:0.82rem; color:#7a7fa0;">Prof. Joel Frías · MAT-014 · Sección W62</p>
+    <p>Estás listo para el Primer Parcial del <strong style="color:#e8c84a;">lunes 6 de abril.</strong><br>
+    Recuerda confirmar tu horario con el profesor antes del domingo.<br>
+    <strong style="color:#e8c84a;">10 puntos · 90 minutos · PDF · nombre en cada hoja.</strong></p>
+    <p style="font-size:0.82rem;color:#7a7fa0;">Prof. Joel Frías · MAT-014 · Sección W62</p>
     <button class="restart-btn" onclick="restart()">Repasar desde el paso 1</button>
   </div>
 
@@ -542,13 +397,13 @@
 
 <script>
   let current = 0;
-  const total  = 8;
-  const cards  = document.querySelectorAll('.step-card');
-  const btns   = document.querySelectorAll('.step-btn');
-  const fill   = document.getElementById('progress-fill');
-  const pText  = document.getElementById('progress-text');
-  const pPct   = document.getElementById('progress-pct');
-  const fin    = document.getElementById('final');
+  const total = 8;
+  const cards = document.querySelectorAll('.step-card');
+  const btns  = document.querySelectorAll('.step-btn');
+  const fill  = document.getElementById('progress-fill');
+  const pText = document.getElementById('progress-text');
+  const pPct  = document.getElementById('progress-pct');
+  const fin   = document.getElementById('final');
 
   function updateProgress() {
     const pct = Math.round((current / (total - 1)) * 100);
@@ -585,7 +440,7 @@
   }
 
   function restart() {
-    btns.forEach(b => { b.classList.remove('active','done'); });
+    btns.forEach(b => b.classList.remove('active','done'));
     fin.classList.remove('visible');
     current = 0;
     cards[0].classList.add('visible');
